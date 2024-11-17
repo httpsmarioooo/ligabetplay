@@ -18,4 +18,15 @@ public class Assist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @ManyToOne
+    @JoinColumn(name = "match_id", referencedColumnName = "id", nullable = false)
+    private Match match;
+
+    @ManyToOne
+    @JoinColumn(name = "player_id", referencedColumnName = "id", nullable = false)
+    private Player player;
+
+    @ManyToOne
+    @JoinColumn(name = "goal_id", referencedColumnName = "id", nullable = false)
+    private Goal goal;
 }
