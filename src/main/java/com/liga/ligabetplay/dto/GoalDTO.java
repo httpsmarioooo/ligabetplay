@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class GoalDTO {
     private Integer id;
+    private Integer matchId;
+    private Integer playerId;
+    private Integer minute;
 }

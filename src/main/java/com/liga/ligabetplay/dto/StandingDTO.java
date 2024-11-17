@@ -9,7 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventTypeDTO {
+public class StandingDTO {
     private Integer id;
-    private String name;
+    private Integer teamId;
+    private Integer matchesPlayed;
+    private Integer wins;
+    private Integer draws;
+    private Integer losses;
+    private Integer points;
 }

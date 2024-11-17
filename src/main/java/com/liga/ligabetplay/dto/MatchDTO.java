@@ -4,12 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Date;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventTypeDTO {
+public class MatchDTO {
     private Integer id;
-    private String name;
+    private Date date;
+    private Integer homeTeamId;
+    private Integer awayTeamId;
+    private Integer stadiumId;
 }
