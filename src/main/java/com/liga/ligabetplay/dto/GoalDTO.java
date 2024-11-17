@@ -1,6 +1,5 @@
-package com.liga.ligabetplay.domain;
+package com.liga.ligabetplay.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,11 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Entity
-@Table(name = "assists")
-public class Assist {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class GoalDTO {
     private Integer id;
-
 }
