@@ -10,6 +10,7 @@ public class StadiumMapper {
         Stadium stadium = new Stadium();
         stadium.setId(stadiumDTO.getId());
         stadium.setName(stadiumDTO.getName());
+        stadium.setLocation(stadiumDTO.getLocation());
         stadium.setCapacity(stadiumDTO.getCapacity());
         return stadium;
     }
@@ -18,6 +19,7 @@ public class StadiumMapper {
         return StadiumDTO.builder()
                 .id(stadium.getId())
                 .name(stadium.getName())
+                .location(stadium.getLocation())
                 .capacity(stadium.getCapacity())
                 .build();
     }
