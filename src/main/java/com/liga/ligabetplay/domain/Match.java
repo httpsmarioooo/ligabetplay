@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -19,7 +21,8 @@ public class Match {
     private Integer id;
 
     @Column(name = "match_date", nullable = false)
-    private java.time.LocalDateTime matchDate;
+    @Temporal(TemporalType.DATE)
+    private Date matchDate;
 
     @ManyToOne
     @JoinColumn(name = "home_team_id", referencedColumnName = "id", nullable = false)
