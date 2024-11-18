@@ -85,14 +85,9 @@ public class AssistServiceImpl implements AssistService {
             throw new Exception("El id no puede estar vacio ni ser 0");
         }
 
-
-        Assist assist = assistRepository.getReferenceById(id);
-        if (assist == null) {
-            throw new Exception("No se encuentra la asistencia con el id"+id);
-        }
-
-        AssistDTO assistDTO = AssistMapper.domainToDto(assist);
-        return assistDTO;
+        Assist assist = assistRepository.findById(id)
+                .orElseThrow (() -> new Exception("No se encuentra el Stadium con el id" +id));
+        return AssistMapper.domainToDto(assist);
     }
 
     @Override
