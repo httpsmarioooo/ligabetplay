@@ -76,7 +76,7 @@ public class TeamServiceImpl implements TeamService{
         if (teamDTO.getName() == null || teamDTO.getName().isBlank()) {
             throw new Exception("El nombre no debe ser nulo o vacío");
         }
-        
+
 
         Team team = TeamMapper.dtoToDomain(teamDTO);
         team = teamRepository.save(team);

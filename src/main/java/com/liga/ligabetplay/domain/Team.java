@@ -21,6 +21,9 @@ public class Team {
     @Column(nullable = false)
     private String name;
 
+    @Column (nullable = false)
+    private String initial;
+
     @ManyToOne
     @JoinColumn(name = "stadium_id", referencedColumnName = "id")
     private Stadium stadium;
@@ -28,4 +31,6 @@ public class Team {
     @ManyToOne
     @JoinColumn(name = "coach_id", referencedColumnName = "id")
     private Coach coach;
+
+
 }

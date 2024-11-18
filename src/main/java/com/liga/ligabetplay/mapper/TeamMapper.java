@@ -10,6 +10,7 @@ public class TeamMapper {
         Team team = new Team();
         team.setId(teamDTO.getId());
         team.setName(teamDTO.getName());
+        team.setInitial(teamDTO.getInitial());
         return team;
     }
 
@@ -17,6 +18,7 @@ public class TeamMapper {
         return TeamDTO.builder()
                 .id(team.getId())
                 .name(team.getName())
+                .initial(team.getInitial())
                 .stadiumId(team.getStadium() != null ? team.getStadium().getId() : null)
                 .coachId(team.getCoach() != null ? team.getCoach().getId() : null)
                 .build();

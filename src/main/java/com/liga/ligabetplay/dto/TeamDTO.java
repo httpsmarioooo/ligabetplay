@@ -14,4 +14,5 @@ public class TeamDTO {
     private String name;
     private Integer stadiumId;
     private Integer coachId;
+    private String initial;
 }
