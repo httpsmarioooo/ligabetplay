@@ -1,7 +1,6 @@
 package com.liga.ligabetplay.controller;
 
 import com.liga.ligabetplay.dto.CoachDTO;
-import com.liga.ligabetplay.repository.CoachRepository;
 import com.liga.ligabetplay.service.CoachService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +12,9 @@ import java.util.List;
 @RequestMapping("/coach")
 public class CoachController {
 
-    private CoachRepository coachRepository;
     private CoachService coachService;
 
-    public CoachController(CoachRepository coachRepository, CoachService coachService) {
-        this.coachRepository = coachRepository;
+    public CoachController(CoachService coachService) {
         this.coachService = coachService;
     }
 
