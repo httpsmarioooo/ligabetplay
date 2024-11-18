@@ -13,7 +13,7 @@ public class EventTypeMapper {
                 .build();
     }
 
-    public static EventTypeDTO domainToDT0(EventType eventType) {
+    public static EventTypeDTO domainToDto(EventType eventType) {
         return EventTypeDTO.builder().
                 id(eventType.getId()).
                 name(eventType.getName()).
@@ -25,6 +25,6 @@ public class EventTypeMapper {
     }
 
     public static List<EventTypeDTO> domainToDTOList(List<EventType> eventTypes) {
-        return eventTypes.stream().map(EventTypeMapper::domainToDT0).toList();
+        return eventTypes.stream().map(EventTypeMapper::domainToDto).toList();
     }
 }

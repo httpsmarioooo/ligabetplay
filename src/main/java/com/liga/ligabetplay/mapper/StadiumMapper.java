@@ -22,7 +22,7 @@ public class StadiumMapper {
                 .build();
     }
 
-    public static List<Stadium> dtoToDomainList(List<StadiumDTO>StadiumsDTO){
+    public static List<Stadium>dtoToDomainList(List<StadiumDTO>StadiumsDTO){
         return StadiumsDTO.stream().map(StadiumMapper::dtoToDomain).toList();
     }
 
