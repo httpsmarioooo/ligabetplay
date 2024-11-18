@@ -68,6 +68,7 @@ public class TeamServiceImpl implements TeamService{
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public TeamDTO modificarTeam(TeamDTO teamDTO) throws Exception {
         if(teamDTO.getId() == null) {
             throw new Exception("El id no puede ser nulo");
