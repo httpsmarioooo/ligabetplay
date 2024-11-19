@@ -75,7 +75,7 @@ public class GoalServiceImpl implements GoalService {
         }
 
         Goal goal = goalRepository.findById(id)
-                .orElseThrow (() -> new Exception("No se encuentra el event type con el id " +id));
+                .orElseThrow (() -> new Exception("No se encuentra el Goal con el id " +id));
         return GoalMapper.domainToDto(goal);
     }
 
