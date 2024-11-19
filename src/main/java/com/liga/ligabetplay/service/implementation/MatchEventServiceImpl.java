@@ -74,7 +74,7 @@ public class MatchEventServiceImpl implements MatchEventService {
         if (player == null) {
             throw new Exception("El Player no existe");
         }
-        
+
         matchEvent.setMatch(match);
         matchEvent.setEventType(eventType);
         matchEvent.setPlayer(player);
@@ -82,7 +82,6 @@ public class MatchEventServiceImpl implements MatchEventService {
 
         return MatchEventMapper.domainToDto(matchEvent);
     }
-
 
     @Override
     @Transactional(readOnly = true)
