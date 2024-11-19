@@ -86,7 +86,7 @@ public class AssistServiceImpl implements AssistService {
         }
 
         Assist assist = assistRepository.findById(id)
-                .orElseThrow (() -> new Exception("No se encuentra el Stadium con el id" +id));
+                .orElseThrow (() -> new Exception("No se encuentra la Assist con el id" +id));
         return AssistMapper.domainToDto(assist);
     }
 

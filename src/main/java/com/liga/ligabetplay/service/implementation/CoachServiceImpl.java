@@ -45,7 +45,7 @@ public class CoachServiceImpl implements CoachService {
         }
 
         Coach coach = coachRepository.findById(id)
-                .orElseThrow (() -> new Exception("No se encuentra el event type con el id " +id));
+                .orElseThrow (() -> new Exception("No se encuentra el Coach con el id " +id));
         return CoachMapper.domainToDto(coach);
     }
 
