@@ -24,7 +24,6 @@ public class JudgeServiceImpl implements JudgeService {
         this.judgeRoleRepository = judgeRoleRepository;
     }
 
-
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public JudgeDTO guardarNuevoJudge(JudgeDTO judgeDTO) throws Exception {
@@ -41,13 +40,11 @@ public class JudgeServiceImpl implements JudgeService {
         }
 
         Judge judge = JudgeMapper.dtoToDomain(judgeDTO);
-        JudgeRole judgeRole = judgeRoleRepository.getReferenceById(judgeDTO.getRoleId());
 
-        if (judgeRole == null){
-            throw new Exception("El JudgeRole no existe");
-        }
-
+        JudgeRole judgeRole = judgeRoleRepository.findById(judgeDTO.getRoleId())
+                    .orElseThrow(() -> new Exception("El JudgeRole no existe"));
         judge.setRole(judgeRole);
+
         judgeRepository.save(judge);
         return JudgeMapper.domainToDto(judge);
     }
@@ -80,13 +77,11 @@ public class JudgeServiceImpl implements JudgeService {
         }
 
         Judge judge = JudgeMapper.dtoToDomain(judgeDTO);
-        JudgeRole judgeRole = judgeRoleRepository.getReferenceById(judgeDTO.getRoleId());
 
-        if (judgeRole == null){
-            throw new Exception("El Player no existe");
-        }
-
+        JudgeRole judgeRole = judgeRoleRepository.findById(judgeDTO.getRoleId())
+                .orElseThrow(() -> new Exception("El JudgeRole no existe"));
         judge.setRole(judgeRole);
+
         judgeRepository.save(judge);
         return JudgeMapper.domainToDto(judge);
     }
