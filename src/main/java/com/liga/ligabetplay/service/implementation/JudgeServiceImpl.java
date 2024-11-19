@@ -44,7 +44,7 @@ public class JudgeServiceImpl implements JudgeService {
         JudgeRole judgeRole = judgeRoleRepository.getReferenceById(judgeDTO.getRoleId());
 
         if (judgeRole == null){
-            throw new Exception("El Player no existe");
+            throw new Exception("El JudgeRole no existe");
         }
 
         judge.setRole(judgeRole);

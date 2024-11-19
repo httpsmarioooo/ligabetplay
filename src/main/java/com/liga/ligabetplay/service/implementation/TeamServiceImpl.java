@@ -96,8 +96,8 @@ public class TeamServiceImpl implements TeamService{
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public TeamDTO modificarTeam(TeamDTO teamDTO) throws Exception {
-        if(teamDTO.getId() == null) {
-            throw new Exception("El id no puede ser nulo");
+        if (teamDTO.getId() == null) {
+            throw new Exception("El id no debe de ser nulo");
         }
 
         if (teamDTO.getName() == null || teamDTO.getName().isBlank()) {
@@ -113,6 +113,16 @@ public class TeamServiceImpl implements TeamService{
         }
 
         Team team = TeamMapper.dtoToDomain(teamDTO);
+
+        // Asignacion de las llaves foraneas sovbre etsa entidad
+        Stadium stadium = stadiumRepository.findById(teamDTO.getStadiumId())
+                .orElseThrow(() -> new Exception("El Stadium no existe"));
+        team.setStadium(stadium);
+
+        Coach coach = coachRepository.findById(teamDTO.getCoachId())
+                .orElseThrow(() -> new Exception("El Coach no existe"));
+        team.setCoach(coach);
+
         team = teamRepository.save(team);
         return TeamMapper.domainToDto(team);
     }
