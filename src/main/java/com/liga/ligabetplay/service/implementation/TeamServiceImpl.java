@@ -43,7 +43,7 @@ public class TeamServiceImpl implements TeamService{
 
         Team team = TeamMapper.dtoToDomain(teamDTO);
         team = teamRepository.save(team);
-        return TeamMapper.domainToDT0(team);
+        return TeamMapper.domainToDt0(team);
 
     }
 
@@ -56,7 +56,7 @@ public class TeamServiceImpl implements TeamService{
 
         Team team = teamRepository.findById(id)
                 .orElseThrow (() -> new Exception("No se encuentra el Team con el id" +id));
-        return TeamMapper.domainToDT0(team);
+        return TeamMapper.domainToDt0(team);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class TeamServiceImpl implements TeamService{
                 .orElseThrow(() -> new Exception("No se encuentra el Team con la inicial " + initial));
 
         // Convertir el país a un DTO y retornar
-        return TeamMapper.domainToDT0(team);
+        return TeamMapper.domainToDt0(team);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class TeamServiceImpl implements TeamService{
 
         Team team = TeamMapper.dtoToDomain(teamDTO);
         team = teamRepository.save(team);
-        return TeamMapper.domainToDT0(team);
+        return TeamMapper.domainToDt0(team);
     }
 
     @Override
