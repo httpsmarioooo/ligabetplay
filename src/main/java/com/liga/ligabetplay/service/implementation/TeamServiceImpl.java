@@ -32,7 +32,6 @@ public class TeamServiceImpl implements TeamService{
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public TeamDTO guardarNuevoTeam(TeamDTO teamDTO) throws Exception {
-
         if (teamDTO.getId() != null) {
             throw new Exception("El id debe de ser nulo");
         }

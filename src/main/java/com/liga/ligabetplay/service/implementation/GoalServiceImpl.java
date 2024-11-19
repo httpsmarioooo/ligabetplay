@@ -93,8 +93,8 @@ public class GoalServiceImpl implements GoalService {
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public GoalDTO modificarGoal(GoalDTO goalDTO) throws Exception {
-        if(goalDTO.getId() != null) {
-            throw new Exception("El id debe de ser nulo");
+        if(goalDTO.getId() == null) {
+            throw new Exception("El id no debe de ser nulo");
         }
 
         if(goalDTO.getMinute() == null) {
@@ -110,19 +110,30 @@ public class GoalServiceImpl implements GoalService {
         }
 
         Goal goal = GoalMapper.dtoToDomain(goalDTO);
-        Player player = playerRepository.getReferenceById(goalDTO.getPlayerId());
-        Match match = matchRepository.getReferenceById(goalDTO.getMatchId());
 
-        if (player == null){
-            throw new Exception("El Player no existe");
-        }
+//        Player player = playerRepository.getReferenceById(goalDTO.getPlayerId());
+//        Match match = matchRepository.getReferenceById(goalDTO.getMatchId());
+//
+//        if (player == null){
+//            throw new Exception("El Player no existe");
+//        }
+//
+//        if (match == null){
+//            throw new Exception("El Match no existe");
+//        }
+//
+//        goal.setPlayer(player);
+//        goal.setMatch(match);
 
-        if (match == null){
-            throw new Exception("El Match no existe");
-        }
-
-        goal.setPlayer(player);
+        Match match = matchRepository.findById(goalDTO.getMatchId())
+                .orElseThrow(() -> new Exception("El Match no existe"));
         goal.setMatch(match);
+
+        Player player = playerRepository.findById(goalDTO.getPlayerId())
+                .orElseThrow(() -> new Exception("El Player no existe"));
+        goal.setPlayer(player);
+
+
         goal = goalRepository.save(goal);
         return GoalMapper.domainToDto(goal);
     }

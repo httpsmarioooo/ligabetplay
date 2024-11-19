@@ -69,8 +69,8 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public PlayerDTO modificarPlayer(PlayerDTO playerDTO) throws Exception {
-        if(playerDTO.getId() == null) {
-            throw new Exception("El id no debe de ser nulo");
+        if(playerDTO.getId() != null) {
+            throw new Exception("El id debe de ser nulo");
         }
 
         if (playerDTO.getName() == null || playerDTO.getName().isBlank()) {
@@ -86,13 +86,12 @@ public class PlayerServiceImpl implements PlayerService {
         }
 
         Player player = PlayerMapper.dtoToDomain(playerDTO);
-        Team team = teamRepository.getReferenceById(playerDTO.getTeamId());
 
-        if (team == null){
-            throw new Exception("El Team no existe");
-        }
-
+        Team team = teamRepository.findById(playerDTO.getTeamId())
+                .orElseThrow(() -> new Exception("El Team no existe"));
         player.setTeam(team);
+
+
         player = playerRepository.save(player);
         return PlayerMapper.domainToDto(player);
     }

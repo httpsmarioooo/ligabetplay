@@ -57,16 +57,12 @@ public class StandingServiceImpl implements StandingService {
             throw new Exception("Los Points  no debe ser nulo o vacío");
         }
 
-
         Standing standing = StandingMapper.dtoToDomain(standingDTO);
-        Team team = teamRepository.getReferenceById(standingDTO.getTeamId());
 
-
-        if (team == null){
-            throw new Exception("El Team no existe");
-        }
-
+        Team team = teamRepository.findById(standingDTO.getTeamId())
+                .orElseThrow(() -> new Exception("El Team no existe"));
         standing.setTeam(team);
+
         standing = standingRepository.save(standing);
         return StandingMapper.domainToDto(standing);
     }
@@ -111,18 +107,15 @@ public class StandingServiceImpl implements StandingService {
         }
 
         if (standingDTO.getPoints() == null ) {
-            throw new Exception("Los puntos no debe ser nulo o vacío");
+            throw new Exception("Los Points  no debe ser nulo o vacío");
         }
 
         Standing standing = StandingMapper.dtoToDomain(standingDTO);
-        Team team = teamRepository.getReferenceById(standingDTO.getTeamId());
 
-
-        if (team == null){
-            throw new Exception("El Team no existe");
-        }
-
+        Team team = teamRepository.findById(standingDTO.getTeamId())
+                .orElseThrow(() -> new Exception("El Team no existe"));
         standing.setTeam(team);
+
         standing = standingRepository.save(standing);
         return StandingMapper.domainToDto(standing);
     }

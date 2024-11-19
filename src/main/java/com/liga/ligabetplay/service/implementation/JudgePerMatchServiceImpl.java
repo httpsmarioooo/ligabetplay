@@ -48,22 +48,30 @@ public class JudgePerMatchServiceImpl implements JudgePerMatchService {
         //Ultimas validaciones en el mismo impl en la parte final---
         JudgePerMatch judgePerMatch = JudgePerMatchMapper.dtoToDomain(judgePerMatchDTO);
 
-        Match match = matchRepository.getReferenceById(judgePerMatchDTO.getMatchId());
-        Judge judge = judgeRepository.getReferenceById(judgePerMatchDTO.getJudgeId());
+//        Match match = matchRepository.getReferenceById(judgePerMatchDTO.getMatchId());
+//        Judge judge = judgeRepository.getReferenceById(judgePerMatchDTO.getJudgeId());
+//
+//        if (match == null){
+//            throw new Exception("El Match no existe");
+//        }
+//
+//
+//        if (judge == null){
+//            throw new Exception("El Judge no existe");
+//        }
+//
+//        judgePerMatch.setMatch(match);
+//        judgePerMatch.setJudge(judge);
 
-        if (match == null){
-            throw new Exception("El Match no existe");
-        }
-
-
-        if (judge == null){
-            throw new Exception("El Judge no existe");
-        }
-
+        Match match = matchRepository.findById(judgePerMatchDTO.getMatchId())
+                .orElseThrow(() -> new Exception("El Match no existe"));
         judgePerMatch.setMatch(match);
-        judgePerMatch.setJudge(judge);
-        judgePerMatch = judgePerMatchRepository.save(judgePerMatch);
 
+        Judge judge = judgeRepository.findById(judgePerMatchDTO.getJudgeId())
+                .orElseThrow(() -> new Exception("El Judge no existe"));
+        judgePerMatch.setJudge(judge);
+
+        judgePerMatch = judgePerMatchRepository.save(judgePerMatch);
         return JudgePerMatchMapper.domainToDto(judgePerMatch);
     }
 
@@ -86,8 +94,6 @@ public class JudgePerMatchServiceImpl implements JudgePerMatchService {
             throw new Exception("El id no debe de ser nulo");
         }
 
-        //2. Validaciones dependencias, llaves etc
-
         if(judgePerMatchDTO.getMatchId() == null) {
             throw new Exception("El MatchId no debe ser nulo");
         }
@@ -100,22 +106,30 @@ public class JudgePerMatchServiceImpl implements JudgePerMatchService {
         //Ultimas validaciones en el mismo impl en la parte final---
         JudgePerMatch judgePerMatch = JudgePerMatchMapper.dtoToDomain(judgePerMatchDTO);
 
-        Match match = matchRepository.getReferenceById(judgePerMatchDTO.getMatchId());
-        Judge judge = judgeRepository.getReferenceById(judgePerMatchDTO.getJudgeId());
+//        Match match = matchRepository.getReferenceById(judgePerMatchDTO.getMatchId());
+//        Judge judge = judgeRepository.getReferenceById(judgePerMatchDTO.getJudgeId());
+//
+//        if (match == null){
+//            throw new Exception("El Match no existe");
+//        }
+//
+//
+//        if (judge == null){
+//            throw new Exception("El Judge no existe");
+//        }
+//
+//        judgePerMatch.setMatch(match);
+//        judgePerMatch.setJudge(judge);
 
-        if (match == null){
-            throw new Exception("El Match no existe");
-        }
-
-
-        if (judge == null){
-            throw new Exception("El Judge no existe");
-        }
-
+        Match match = matchRepository.findById(judgePerMatchDTO.getMatchId())
+                .orElseThrow(() -> new Exception("El Match no existe"));
         judgePerMatch.setMatch(match);
-        judgePerMatch.setJudge(judge);
-        judgePerMatch = judgePerMatchRepository.save(judgePerMatch);
 
+        Judge judge = judgeRepository.findById(judgePerMatchDTO.getJudgeId())
+                .orElseThrow(() -> new Exception("El Judge no existe"));
+        judgePerMatch.setJudge(judge);
+
+        judgePerMatch = judgePerMatchRepository.save(judgePerMatch);
         return JudgePerMatchMapper.domainToDto(judgePerMatch);
     }
 

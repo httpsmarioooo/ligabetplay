@@ -10,18 +10,19 @@ Tablas dependientes
 Son tablas que tienen claves foráneas hacia otras tablas:
 
 Nivel 1: Dependen directamente de tablas independientes.
-teams: Depende de stadiums y coaches.
-judges: Depende de judge_roles.
+
+teams: Depende de stadiums y coaches. TERMINADO
+judges: Depende de judge_roles. TERMINADO
 
 Nivel 2: Dependen de tablas dependientes del Nivel 1.
-players: Depende de teams.
-matches: Depende de teams y stadiums.
+
+players: Depende de teams. TERMINADO
+matches: Depende de teams y stadiums. TERMINADO
 
 Nivel 3: Dependen de tablas dependientes del Nivel 2.
-goals: Depende de matches y players.
-match_events: Depende de matches, event_type, y players.
 
-
-assists: Depende de matches, players, y goals.
-standings: Depende de teams.
-judges_per_match: Depende de matches y judges.
+goals: Depende de matches y players.  TERMINADO
+match_events: Depende de matches, event_type, y players. TERMINADO
+assists: Depende de matches, players, y goals. TERMINADO
+standings: Depende de teams.  TERMINADO
+judges_per_match: Depende de matches y judges. TERMINADO

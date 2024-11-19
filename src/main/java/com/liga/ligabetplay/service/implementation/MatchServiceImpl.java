@@ -148,23 +148,36 @@ public class MatchServiceImpl implements MatchService {
         }
 
         Match match = MatchMapper.dtoToDomain(matchDTO);
-        Team homeTeam = teamRepository.getReferenceById(matchDTO.getHomeTeamId());
-        Team awayTeam = teamRepository.getReferenceById(matchDTO.getAwayTeamId());
-        Stadium stadium  = stadiumRepository.getReferenceById(matchDTO.getStadiumId());
+//        Team homeTeam = teamRepository.getReferenceById(matchDTO.getHomeTeamId());
+//        Team awayTeam = teamRepository.getReferenceById(matchDTO.getAwayTeamId());
+//        Stadium stadium  = stadiumRepository.getReferenceById(matchDTO.getStadiumId());
+//
+//        if (homeTeam == null) {
+//            throw new Exception("El Home Team no existe");
+//        }
+//        if (awayTeam == null) {
+//            throw new Exception("El Away Team no existe");
+//        }
+//        if (stadium == null) {
+//            throw new Exception("El Stadium no existe");
+//        }
+//
+//        match.setHomeTeam(homeTeam);
+//        match.setAwayTeam(awayTeam);
+//        match.setStadium(stadium);
 
-        if (homeTeam == null) {
-            throw new Exception("El Home Team no existe");
-        }
-        if (awayTeam == null) {
-            throw new Exception("El Away Team no existe");
-        }
-        if (stadium == null) {
-            throw new Exception("El Stadium no existe");
-        }
-
+        Team homeTeam = teamRepository.findById(matchDTO.getHomeTeamId())
+                .orElseThrow(() -> new Exception("El HomeTeam no existe"));
         match.setHomeTeam(homeTeam);
+
+        Team awayTeam = teamRepository.findById(matchDTO.getAwayTeamId())
+                .orElseThrow(() -> new Exception("El AwayTeam no existe"));
         match.setAwayTeam(awayTeam);
+
+        Stadium stadium = stadiumRepository.findById(matchDTO.getStadiumId())
+                .orElseThrow(() -> new Exception("El Stadium no existe"));
         match.setStadium(stadium);
+
         match = matchRepository.save(match);
         return MatchMapper.domainToDto(match);
     }
