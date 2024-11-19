@@ -84,7 +84,7 @@ public class MatchEventServiceImpl implements MatchEventService {
         matchEvent.setMatch(match);
 
         EventType eventType = eventTypeRepository.findById(matchEventDTO.getEventTypeId())
-                .orElseThrow(() -> new Exception("El Player no existe"));
+                .orElseThrow(() -> new Exception("El eventType no existe"));
         matchEvent.setEventType(eventType);
 
         Player player = playerRepository.findById(matchEventDTO.getPlayerId())
