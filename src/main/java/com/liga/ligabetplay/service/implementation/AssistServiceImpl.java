@@ -54,26 +54,39 @@ public class AssistServiceImpl implements AssistService {
         }
 
         Assist assist = AssistMapper.dtoToDomain(assistDTO);
-        Player player = playerRepository.getReferenceById(assistDTO.getPlayerId());
-        Match match = matchRepository.getReferenceById(assistDTO.getMatchId());
-        Goal goal = goalRepository.getReferenceById(assistDTO.getGoalId());
+//        Player player = playerRepository.getReferenceById(assistDTO.getPlayerId());
+//        Match match = matchRepository.getReferenceById(assistDTO.getMatchId());
+//        Goal goal = goalRepository.getReferenceById(assistDTO.getGoalId());
+//
+//        if (player == null){
+//            throw new Exception("El Player no existe");
+//        }
+//
+//        if (match == null){
+//            throw new Exception("El Player no existe");
+//        }
+//
+//        if (goal == null){
+//            throw new Exception("El Gol no existe");
+//        }
+//
+//
+//        assist.setPlayer(player);
+//        assist.setMatch(match);
+//        assist.setGoal(goal);
 
-        if (player == null){
-            throw new Exception("El Player no existe");
-        }
-
-        if (match == null){
-            throw new Exception("El Player no existe");
-        }
-
-        if (goal == null){
-            throw new Exception("El Gol no existe");
-        }
-
-
-        assist.setPlayer(player);
+        Match match = matchRepository.findById(assistDTO.getMatchId())
+                .orElseThrow(() -> new Exception("El Match no existe"));
         assist.setMatch(match);
+
+        Player player = playerRepository.findById(assistDTO.getPlayerId())
+                .orElseThrow(() -> new Exception("El Player no existe"));
+        assist.setPlayer(player);
+
+        Goal goal = goalRepository.findById(assistDTO.getGoalId())
+                .orElseThrow(() -> new Exception("El Goal no existe"));
         assist.setGoal(goal);
+        
         assist = assistRepository.save(assist);
         return AssistMapper.domainToDto(assist);
     }
@@ -110,25 +123,39 @@ public class AssistServiceImpl implements AssistService {
         }
 
         Assist assist = AssistMapper.dtoToDomain(assistDTO);
-        Player player = playerRepository.getReferenceById(assistDTO.getPlayerId());
-        Match match = matchRepository.getReferenceById(assistDTO.getMatchId());
-        Goal goal = goalRepository.getReferenceById(assistDTO.getGoalId());
+//        Player player = playerRepository.getReferenceById(assistDTO.getPlayerId());
+//        Match match = matchRepository.getReferenceById(assistDTO.getMatchId());
+//        Goal goal = goalRepository.getReferenceById(assistDTO.getGoalId());
+//
+//        if (player == null){
+//            throw new Exception("El Player no existe");
+//        }
+//
+//        if (match == null){
+//            throw new Exception("El Player no existe");
+//        }
+//
+//        if (goal == null){
+//            throw new Exception("El Gol no existe");
+//        }
+//
+//        assist.setPlayer(player);
+//        assist.setMatch(match);
+//        assist.setGoal(goal);
 
-        if (player == null){
-            throw new Exception("El Player no existe");
-        }
-
-        if (match == null){
-            throw new Exception("El Player no existe");
-        }
-
-        if (goal == null){
-            throw new Exception("El Gol no existe");
-        }
-
-        assist.setPlayer(player);
+        Match match = matchRepository.findById(assistDTO.getMatchId())
+                .orElseThrow(() -> new Exception("El Match no existe"));
         assist.setMatch(match);
+
+        Player player = playerRepository.findById(assistDTO.getPlayerId())
+                .orElseThrow(() -> new Exception("El Player no existe"));
+        assist.setPlayer(player);
+
+        Goal goal = goalRepository.findById(assistDTO.getGoalId())
+                .orElseThrow(() -> new Exception("El Goal no existe"));
         assist.setGoal(goal);
+
+
         assist = assistRepository.save(assist);
         return AssistMapper.domainToDto(assist);
     }

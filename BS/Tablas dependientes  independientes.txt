@@ -20,6 +20,8 @@ matches: Depende de teams y stadiums.
 Nivel 3: Dependen de tablas dependientes del Nivel 2.
 goals: Depende de matches y players.
 match_events: Depende de matches, event_type, y players.
+
+
 assists: Depende de matches, players, y goals.
 standings: Depende de teams.
 judges_per_match: Depende de matches y judges.
