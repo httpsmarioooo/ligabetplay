@@ -50,7 +50,7 @@ public class GoalServiceImpl implements GoalService {
         }
 
         Goal goal = GoalMapper.dtoToDomain(goalDTO);
-        
+
 //        Player player = playerRepository.getReferenceById(goalDTO.getPlayerId());
 //        Match match = matchRepository.getReferenceById(goalDTO.getMatchId());
 //
@@ -66,11 +66,11 @@ public class GoalServiceImpl implements GoalService {
 //        goal.setMatch(match);
 
         Match match = matchRepository.findById(goalDTO.getMatchId())
-                .orElseThrow(() -> new Exception("El HomeTeam no existe"));
+                .orElseThrow(() -> new Exception("El Match no existe"));
         goal.setMatch(match);
 
         Player player = playerRepository.findById(goalDTO.getPlayerId())
-                .orElseThrow(() -> new Exception("El HomeTeam no existe"));
+                .orElseThrow(() -> new Exception("El Player no existe"));
         goal.setPlayer(player);
 
 
