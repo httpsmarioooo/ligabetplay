@@ -25,11 +25,11 @@ public class Team {
     private String initial;
 
     @ManyToOne
-    @JoinColumn(name = "stadium_id", referencedColumnName = "id")
+    @JoinColumn(name = "stadium_id", referencedColumnName = "id", nullable = false)
     private Stadium stadium;
 
     @ManyToOne
-    @JoinColumn(name = "coach_id", referencedColumnName = "id")
+    @JoinColumn(name = "coach_id", referencedColumnName = "id", nullable = false)
     private Coach coach;
 
 
