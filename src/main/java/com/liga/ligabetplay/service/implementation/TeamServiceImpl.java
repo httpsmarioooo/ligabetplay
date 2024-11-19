@@ -32,6 +32,14 @@ public class TeamServiceImpl implements TeamService{
             throw new Exception("El nombre no debe ser nulo o vacío");
         }
 
+        if (teamDTO.getStadiumId() == null) {
+            throw new Exception("El Stadium no debe ser nulo o vacío");
+        }
+
+        if (teamDTO.getCoachId() == null) {
+            throw new Exception("El Coach no debe ser nulo o vacío");
+        }
+
 
         Team team = TeamMapper.dtoToDomain(teamDTO);
         team = teamRepository.save(team);
@@ -76,6 +84,14 @@ public class TeamServiceImpl implements TeamService{
 
         if (teamDTO.getName() == null || teamDTO.getName().isBlank()) {
             throw new Exception("El nombre no debe ser nulo o vacío");
+        }
+
+        if (teamDTO.getStadiumId() == null) {
+            throw new Exception("El Stadium no debe ser nulo o vacío");
+        }
+
+        if (teamDTO.getCoachId() == null) {
+            throw new Exception("El Coach no debe ser nulo o vacío");
         }
 
 
