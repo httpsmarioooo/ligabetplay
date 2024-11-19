@@ -7,11 +7,17 @@ import java.util.List;
 
 public class TeamMapper {
     public static Team dtoToDomain(TeamDTO teamDTO){
-        Team team = new Team();
-        team.setId(teamDTO.getId());
-        team.setName(teamDTO.getName());
-        team.setInitial(teamDTO.getInitial());
-        return team;
+        return Team.builder()
+                .id(teamDTO.getId())
+                .name(teamDTO.getName())
+                .initial(teamDTO.getInitial())
+                .build();
+
+//        Team team = new Team();
+//        team.setId(teamDTO.getId());
+//        team.setName(teamDTO.getName());
+//        team.setInitial(teamDTO.getInitial());
+//        return team;
     }
 
     public static TeamDTO domainToDT0(Team team){

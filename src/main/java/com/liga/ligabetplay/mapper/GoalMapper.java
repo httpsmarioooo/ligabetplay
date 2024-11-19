@@ -6,7 +6,6 @@ import com.liga.ligabetplay.dto.GoalDTO;
 import java.util.List;
 
 public class GoalMapper {
-
     public static Goal dtoToDomain (GoalDTO goalDTO){
         return Goal.builder()
                 .id(goalDTO.getId())

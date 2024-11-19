@@ -7,10 +7,14 @@ import java.util.List;
 
 public class JudgeMapper {
     public static Judge dtoToDomain(JudgeDTO judgeDTO){
-        Judge judge = new Judge();
-        judge.setId(judgeDTO.getId());
-        judge.setName(judgeDTO.getName());
-        return judge;
+        return Judge.builder()
+                .id(judgeDTO.getId())
+                .name(judgeDTO.getName())
+                .build();
+
+//        judge.setId(judgeDTO.getId());
+//        judge.setName(judgeDTO.getName());
+//        return judge;
     }
 
     public static JudgeDTO domainToDto(Judge judge){

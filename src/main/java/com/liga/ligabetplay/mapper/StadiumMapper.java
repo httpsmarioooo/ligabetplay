@@ -7,12 +7,19 @@ import java.util.List;
 
 public class StadiumMapper {
     public static Stadium dtoToDomain(StadiumDTO stadiumDTO) {
-        Stadium stadium = new Stadium();
-        stadium.setId(stadiumDTO.getId());
-        stadium.setName(stadiumDTO.getName());
-        stadium.setLocation(stadiumDTO.getLocation());
-        stadium.setCapacity(stadiumDTO.getCapacity());
-        return stadium;
+        return Stadium.builder()
+                .id(stadiumDTO.getId())
+                .name(stadiumDTO.getName())
+                .location(stadiumDTO.getLocation())
+                .capacity(stadiumDTO.getCapacity())
+                .build();
+
+//        Stadium stadium = new Stadium();
+//        stadium.setId(stadiumDTO.getId());
+//        stadium.setName(stadiumDTO.getName());
+//        stadium.setLocation(stadiumDTO.getLocation());
+//        stadium.setCapacity(stadiumDTO.getCapacity());
+//        return stadium;
     }
 
     public static StadiumDTO domainToDto(Stadium stadium) {

@@ -6,7 +6,6 @@ import com.liga.ligabetplay.dto.AssistDTO;
 import java.util.List;
 
 public class AssistMapper {
-
     public static Assist dtoToDomain (AssistDTO assistDTO){
         return Assist.builder()
                 .id(assistDTO.getId())

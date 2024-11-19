@@ -7,10 +7,14 @@ import java.util.List;
 
 public class JudgeRoleMapper {
     public static JudgeRole dtoToDomain(JudgeRoleDTO judgeRoleDTO){
-        JudgeRole judgeRole = new JudgeRole();
-        judgeRole.setId(judgeRoleDTO.getId());
-        judgeRole.setRoleName(judgeRoleDTO.getRoleName());
-        return judgeRole;
+        return JudgeRole.builder()
+                .id(judgeRoleDTO.getId())
+                .roleName(judgeRoleDTO.getRoleName())
+                .build();
+//        JudgeRole judgeRole = new JudgeRole();
+//        judgeRole.setId(judgeRoleDTO.getId());
+//        judgeRole.setRoleName(judgeRoleDTO.getRoleName());
+//        return judgeRole;
     }
 
     public static JudgeRoleDTO domainToDto(JudgeRole judgeRole){
