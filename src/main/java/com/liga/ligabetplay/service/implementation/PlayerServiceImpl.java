@@ -47,7 +47,7 @@ public class PlayerServiceImpl implements PlayerService {
         Team team = teamRepository.findById(playerDTO.getTeamId())
                 .orElseThrow(() -> new Exception("El Team no existe"));
         player.setTeam(team);
-        
+
 
         player = playerRepository.save(player);
         return PlayerMapper.domainToDto(player);
