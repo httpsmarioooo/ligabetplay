@@ -98,7 +98,7 @@ public class StadiumServiceImpl implements StadiumService {
 
         Boolean existeStadium = stadiumRepository.existsById(id);
         if (existeStadium == false) {
-            throw new Exception("El id del stadium no existe " +id+". Por lo tanto no se puede eliminar");
+            throw new Exception("El id "+id+" del stadium no existe. Por lo tanto no se puede eliminar");
         }
         
         stadiumRepository.deleteById(id);
