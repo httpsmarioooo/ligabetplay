@@ -20,7 +20,7 @@ public class TeamMapper {
 //        return team;
     }
 
-    public static TeamDTO domainToDt0(Team team){
+    public static TeamDTO domainToDto(Team team){
         return TeamDTO.builder()
                 .id(team.getId())
                 .name(team.getName())
@@ -35,6 +35,6 @@ public class TeamMapper {
     }
 
     public static List<TeamDTO>domainToDTOList(List<Team>teams){
-        return teams.stream().map(TeamMapper::domainToDt0).toList();
+        return teams.stream().map(TeamMapper::domainToDto).toList();
     }
 }

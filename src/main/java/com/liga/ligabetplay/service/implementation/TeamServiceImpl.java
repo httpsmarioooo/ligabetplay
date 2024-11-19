@@ -1,8 +1,12 @@
 package com.liga.ligabetplay.service.implementation;
 
+import com.liga.ligabetplay.domain.Coach;
+import com.liga.ligabetplay.domain.Stadium;
 import com.liga.ligabetplay.domain.Team;
 import com.liga.ligabetplay.dto.TeamDTO;
 import com.liga.ligabetplay.mapper.TeamMapper;
+import com.liga.ligabetplay.repository.CoachRepository;
+import com.liga.ligabetplay.repository.StadiumRepository;
 import com.liga.ligabetplay.repository.TeamRepository;
 import com.liga.ligabetplay.service.TeamService;
 import org.springframework.stereotype.Service;
@@ -16,15 +20,20 @@ public class TeamServiceImpl implements TeamService{
 
     private final TeamRepository teamRepository;
 
-    public TeamServiceImpl(TeamRepository teamRepository) {
+    private final StadiumRepository stadiumRepository;
+    private final CoachRepository coachRepository;
+
+    public TeamServiceImpl(TeamRepository teamRepository, StadiumRepository stadiumRepository, CoachRepository coachRepository) {
         this.teamRepository = teamRepository;
+        this.stadiumRepository = stadiumRepository;
+        this.coachRepository = coachRepository;
     }
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public TeamDTO guardarNuevoTeam(TeamDTO teamDTO) throws Exception {
 
-        if(teamDTO.getId() != null) {
+        if (teamDTO.getId() != null) {
             throw new Exception("El id debe de ser nulo");
         }
 
@@ -40,10 +49,19 @@ public class TeamServiceImpl implements TeamService{
             throw new Exception("El Coach no debe ser nulo o vacío");
         }
 
-
         Team team = TeamMapper.dtoToDomain(teamDTO);
+
+        // Asignacion de las llaves foraneas sovbre etsa entidad
+        Stadium stadium = stadiumRepository.findById(teamDTO.getStadiumId())
+                .orElseThrow(() -> new Exception("El Stadium no existe"));
+        team.setStadium(stadium);
+
+        Coach coach = coachRepository.findById(teamDTO.getCoachId())
+                .orElseThrow(() -> new Exception("El Coach no existe"));
+        team.setCoach(coach);
+
         team = teamRepository.save(team);
-        return TeamMapper.domainToDt0(team);
+        return TeamMapper.domainToDto(team);
 
     }
 
@@ -56,7 +74,7 @@ public class TeamServiceImpl implements TeamService{
 
         Team team = teamRepository.findById(id)
                 .orElseThrow (() -> new Exception("No se encuentra el Team con el id" +id));
-        return TeamMapper.domainToDt0(team);
+        return TeamMapper.domainToDto(team);
     }
 
     @Override
@@ -72,7 +90,7 @@ public class TeamServiceImpl implements TeamService{
                 .orElseThrow(() -> new Exception("No se encuentra el Team con la inicial " + initial));
 
         // Convertir el país a un DTO y retornar
-        return TeamMapper.domainToDt0(team);
+        return TeamMapper.domainToDto(team);
     }
 
     @Override
@@ -97,7 +115,7 @@ public class TeamServiceImpl implements TeamService{
 
         Team team = TeamMapper.dtoToDomain(teamDTO);
         team = teamRepository.save(team);
-        return TeamMapper.domainToDt0(team);
+        return TeamMapper.domainToDto(team);
     }
 
     @Override

@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "teams")
 public class Team {
     @Id
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
