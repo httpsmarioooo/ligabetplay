@@ -87,10 +87,6 @@ create table public.judges_per_match (
   match_id integer references matches (id),
   judge_id integer references judges (id)
 );
-create table public.coaches (
-  id serial primary key,
-  name text not null
-);
 
 create table public.stadiums (
   id serial primary key,
